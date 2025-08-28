@@ -22,16 +22,6 @@ class Caja extends Model
         'movimiento_id',
     ];
 
-    public function item()
-    {
-        return $this->hasMany(Item::class)->with('parte');
-    }
-
-    public function items()
-    {
-        return $this->hasMany(Item::class);
-    }
-
     public function movimiento()
     {
         return $this->belongsTo(Movimiento::class);
@@ -44,18 +34,17 @@ class Caja extends Model
 
     public function almacen()
     {
-        return $this->hasOneThrough(Almacen::class, Movimiento::class, 'id', 'id', 'movimiento_id', 'almacen_id',
-        'nombre',
-        'identificador',
-        'calle',
-        'numero',
-        'colonia',
-        'ciudad',
-        'estado',
-        'pais',
-        'cp',
-        'telefono',
-        'web',);
+        return $this->belongsTo(Almacen::class, 'almacen_id');
+    }
+
+    public function cliente()
+    {
+        return $this->belongsTo(Cliente::class, 'cliente_id');
+    }
+
+    public function items()
+    {
+        return $this->hasMany(Item::class);
     }
 
 }

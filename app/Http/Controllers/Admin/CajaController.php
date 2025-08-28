@@ -197,11 +197,9 @@ class CajaController extends Controller
      */
     public function generatePdf(Caja $caja)
     {
-        // Carga movimiento y almacen relacionados
         $caja->load([
-            'movimiento.cliente',
-            'movimiento.almacen',  // esto es necesario
-            'almacen',             // si quieres el almacen de la caja directamente
+            'cliente',
+            'almacen',
             'items.parte'
         ]);
 

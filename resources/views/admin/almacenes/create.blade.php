@@ -5,35 +5,46 @@
 @section('content')
 <div class="section">
     <div class="section-header">
-        <h1>Nuevo Almacén</h1>
+        <h1 class="text-2xl font-bold text-slate-900">Nuevo Almacén</h1>
+        <div class="section-header-breadcrumb">
+            <a href="{{ route('admin.almacenes.index') }}" class="btn btn-light">
+                <i class="fas fa-arrow-left mr-2"></i> Volver al Listado
+            </a>
+        </div>
     </div>
 
     <div class="section-body">
-        <div class="card">
+        <div class="card shadow-sm">
+            <div class="card-header">
+                <h4 class="font-semibold text-lg text-slate-800">
+                    <i class="fas fa-warehouse mr-2 text-blue-600"></i>
+                    Registro de Almacenes
+                </h4>
+            </div>
             <div class="card-body">
                 <form method="POST" action="{{ route('admin.almacenes.storeMultiple') }}">
                     @csrf
 
                     <div id="almacenes-container">
-                        <div class="almacen-item border rounded p-3 mb-3">
+                        <div class="almacen-item border rounded-lg p-4 mb-4 bg-light">
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Nombre <span class="text-danger">*</span></label>
+                                        <label class="font-semibold">Nombre <span class="text-danger">*</span></label>
                                         <input name="almacenes[0][nombre]" class="form-control" required>
                                     </div>
                                 </div>
 
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Identificador <span class="text-danger">*</span></label>
+                                        <label class="font-semibold">Identificador <span class="text-danger">*</span></label>
                                         <input name="almacenes[0][identificador]" class="form-control" required>
                                     </div>
                                 </div>
 
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Calle</label>
+                                        <label class="font-semibold">Calle</label>
                                         <input name="almacenes[0][calle]" class="form-control">
                                     </div>
                                 </div>
@@ -42,21 +53,21 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Número</label>
+                                        <label class="font-semibold">Número</label>
                                         <input name="almacenes[0][numero]" class="form-control">
                                     </div>
                                 </div>
 
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Colonia</label>
+                                        <label class="font-semibold">Colonia</label>
                                         <input name="almacenes[0][colonia]" class="form-control">
                                     </div>
                                 </div>
 
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Ciudad</label>
+                                        <label class="font-semibold">Ciudad</label>
                                         <input name="almacenes[0][ciudad]" class="form-control">
                                     </div>
                                 </div>
@@ -65,21 +76,21 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Estado</label>
+                                        <label class="font-semibold">Estado</label>
                                         <input name="almacenes[0][estado]" class="form-control">
                                     </div>
                                 </div>
 
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>País</label>
+                                        <label class="font-semibold">País</label>
                                         <input name="almacenes[0][pais]" class="form-control">
                                     </div>
                                 </div>
 
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Código Postal</label>
+                                        <label class="font-semibold">Código Postal</label>
                                         <input name="almacenes[0][cp]" class="form-control">
                                     </div>
                                 </div>
@@ -88,31 +99,40 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Teléfono</label>
+                                        <label class="font-semibold">Teléfono</label>
                                         <input name="almacenes[0][telefono]" class="form-control">
                                     </div>
                                 </div>
 
                                 <div class="col-md-8">
                                     <div class="form-group">
-                                        <label>Web</label>
+                                        <label class="font-semibold">Web</label>
                                         <input name="almacenes[0][web]" class="form-control">
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="row">
-                                <div class="col-md-4 d-flex align-items-end">
-                                    <button type="button" class="btn btn-danger btn-sm remove-almacen d-none w-100">Eliminar</button>
-                                </div>
+                            <div class="text-right">
+                                <button type="button" class="btn btn-danger btn-sm remove-almacen d-none">
+                                    <i class="fas fa-trash mr-1"></i> Eliminar
+                                </button>
                             </div>
                         </div>
                     </div>
 
-                    <button type="button" class="btn btn-success mb-3" id="add-almacen">+ Agregar otro almacén</button>
-                    <hr>
-                    <button type="submit" class="btn btn-primary">Guardar Todos</button>
-                    <a href="{{ route('admin.almacenes.index') }}" class="btn btn-secondary">Cancelar</a>
+                    <div class="d-flex justify-content-between mt-4">
+                        <button type="button" class="btn btn-success" id="add-almacen">
+                            <i class="fas fa-plus mr-2"></i> Agregar otro almacén
+                        </button>
+                        <div>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save mr-2"></i> Guardar Todos
+                            </button>
+                            <a href="{{ route('admin.almacenes.index') }}" class="btn btn-secondary">
+                                Cancelar
+                            </a>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
